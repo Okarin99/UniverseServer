@@ -36,7 +36,7 @@ bool AccountsTable::checkPassword(std::string password, unsigned int accountid){
 	auto r = mysql_fetch_row(qr);
 	std::string pwhash = r[0];
 	std::string testhash = hashPassword(password);
-	if (pwhash == testhash) return true;
+	if (testhash.compare(0, pwhash.length(), pwhash) == 0) return true;
 	return false;
 }
 

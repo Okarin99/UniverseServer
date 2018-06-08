@@ -14,6 +14,18 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
+# Visual C++ cache files
+ipch/
+*.opendb
+*.opensdf
+*.aps
+*.ncb
+*.sdf
+*.cachefile
+*.db
+*.db-shm
+*.db-wal
+
 # Windows shortcuts
 *.lnk
 
