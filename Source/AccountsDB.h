@@ -60,6 +60,8 @@ public:
 	static unsigned int getAccountID(std::string username);
 	//Returns the id of the created Account and 0 if creation was impossible
 	static unsigned long long addAccount(std::string name, std::string password);
+	//Change the Password
+	static void changePassword(unsigned long long id, std::string newPassword);
 	//Returns true if Password is valid for that account
 	static bool checkPassword(std::string password, unsigned int accountid );
 	//Returns information about the accessability of the account

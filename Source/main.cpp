@@ -59,7 +59,8 @@ void ConsoleLoop(){
 				str << "Available commands:" << std::endl <<
 					"quit        = Quit the Server" << std::endl <<
 					"register    = Register New User" << std::endl <<
-					"sessions    = Show Number of sessions" << std::endl;
+					"sessions    = Show Number of sessions" << std::endl <<
+					"changePwd   = Change Password" << std::endl;
 				std::cout << str.str();
 			}
 			else if (command == "quit") quit = LUNIterminate = true;
@@ -83,6 +84,20 @@ void ConsoleLoop(){
 					}
 				}
 				else std::cout << "Username already exist!\n";
+			}
+			else if (command == "changePwd") {
+				std::string currentUsername, password;
+				std::cout << "Current username: ";
+				std::cin >> currentUsername; // Get the username
+				unsigned long long id = AccountsTable::getAccountID(currentUsername);
+				if (id != 0) { // Check to see if username already exists... If not, continue
+					std::cout << "Password: ";
+					std::cin >> password; // Get the password
+										  // Create the new user into the database
+					AccountsTable::changePassword(id, password);
+					std::cout << "Password for '" << currentUsername << "' with id " << id << " has been changed." << std::endl;
+				}
+				else std::cout << "Username doesn't exist!" << std::endl;
 			}
 			else if (command == "sessions"){
 				std::cout << "Current session count: " << std::to_string(SessionsTable::count()) << std::endl;

@@ -20,6 +20,13 @@ unsigned int AccountsTable::getAccountID(std::string username){
 	return r;
 }
 
+void AccountsTable::changePassword(unsigned long long id, std::string newPassword)
+{
+	std::string hpw = hashPassword(newPassword);
+	Database::Query("UPDATE `accounts` SET `password` = '" + hpw + "' WHERE `id` = " + std::to_string(id));
+	return;
+}
+
 unsigned long long AccountsTable::addAccount(std::string name, std::string password){
 	unsigned int id = AccountsTable::getAccountID(name);
 	if (id != 0) return 0; //Account name already exists
